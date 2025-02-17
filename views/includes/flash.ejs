@@ -1,0 +1,16 @@
+<!-- for success -->
+<% if(success && success.length){ %>
+    <!-- here success is an array it always exits so its length shouls also exit then only display  -->
+    <div class="alert alert-success alert-dismissible fade text-center show col-10 offset-1" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+<!-- for failure -->
+<% if(error && error.length){ %>
+    <!-- here success is an array it always exits so its length shouls also exit then only display  -->
+    <div class="alert alert-danger alert-dismissible text-center fade show col-10 offset-1" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>

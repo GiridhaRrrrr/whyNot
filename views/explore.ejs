@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/explore.css">
+    <title>Home | whyNot!</title>
+</head>
+<body>
+    <div class="outer">
+        <div class="sideblock">
+            <i class="fa-brands fa-google-wallet originalIcon"></i>
+            <div class="vertical-text">
+                <h1><i class="fa-brands fa-google-wallet" style="transform: rotate(90deg);"></i>hy<b>NOT</b> <i style="transform: rotate(90deg);" class="fa-solid fa-circle-question"></i></h1>
+            </div>
+        </div>
+        <div class="mainblock">
+            <div class="bannerContainer">
+                    <div class="bannerHeading">
+                        <h4> 
+                        <i class="fa-brands fa-google-wallet"></i>hy<b><span class="span-not">NOT !</span></b> 
+
+                        </h4>
+                    </div>
+                    <div class="bannerText">
+                        <h1>What's <span class="bannerText-innerText" id="autoText">whyNOT...?</span></h1>
+                        <form method="get" action="/posts">
+                            <button class="explore-button">
+                                <span class="explore-span">Explore</span>
+                            </button>                          
+                        </form>
+                    </div>
+            </div>
+            <div class="explanation-main">
+                <div class="explaination text">     
+                    <h2 class="explanation-heading">WhyNot! – A Place to Ask, Answer</h2>               
+                    <p class="text-p">
+                        WhyNot is an interactive web application designed for users to ask their doubts and get answers
+                        from the community. It provides a simple yet engaging space where curiosity meets clarity.
+                        Whether you’re looking for expert advice, personal opinions, or solutions to everyday problems,
+                        WhyNot makes it easy to connect with others and gain new insights.
+                    </p>
+                    <form method="get" action="/posts">
+                        <button class="explain-button">
+                            <span class="explain-span">Explore</span>
+                        </button> 
+                    </form>
+                </div>
+                <div class="explanation count">
+                    <div class="counter-container">
+                        <i class="fa-brands fa-twitter"></i>
+                        <div class="counter" data-target="50"></div>
+                        <span>Twitter Followers</span>
+                      </div>
+                  
+                      <div class="counter-container">
+                        <i class="fa-brands fa-instagram"></i>
+                        <div class="counter" data-target="90"></div>
+                        <span>Instagram Subscribers</span>
+                      </div>
+                  
+                      <div class="counter-container">
+                        <i class="fa-brands fa-facebook"></i>
+                        <div class="counter" data-target="120"></div>
+                        <span>Facebook Fans</span>
+                      </div>
+                </div>
+            </div>
+            <div class="descrption">
+                <h1 class="descrption-heading">Why use <span style="color: #b92b27;">WhyNot?</span> </h1>    
+                <p class="descrption-p">WhyNot is an AI-powered Q&A platform that simplifies learning and knowledge sharing. If you’re struggling with a concept,
+                    post your question and receive clear, AI-enhanced explanations. Want to help others? Answer questions without worrying about
+                   grammar or clarity—AI refines and improves your response. With intelligent categorization, seamless user authentication, and
+                   an interactive community, WhyNot creates a space where curiosity thrives. Whether you're a student, professional, or enthusiast,
+                   WhyNot helps you find answers, share insights, and grow your knowledge effortlessly. Learning has never been easier—ask, answer, and explore with WhyNot!</p>             
+            </div>
+            <!-- testimony -->
+            <div class="testimonial-container">
+                <div class="progress-bar"></div>
+                <div class="fas fa-quote-right fa-quote"></div>
+                <div class="fas fa-quote-left fa-quote"></div>
+                <p class="testimonial">
+                    "WhyNot has completely transformed the way I learn! Before, I was hesitant to ask questions online due to grammar mistakes or unclear wording, but with AI handling that, I can focus entirely on understanding concepts. The AI-enhanced explanations make even the toughest topics easier to grasp, and the community is always ready to help. Answering questions is just as rewarding since AI improves my responses automatically. The platform is well-organized with intelligent categorization, making it easy to find relevant discussions. WhyNot has become my go-to place for learning, sharing knowledge, and growing academically without any hassle!"
+                </p>
+                <div class="user">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/46.jpg"
+                    alt="user"
+                    class="user-image"
+                  />
+                  <div class="user-details">
+                    <h4 class="username">Kusmitha</h4>
+                    <p class="role">CSE-Student</p>
+                  </div>
+                </div>
+              </div>
+
+
+                        <!-- fotter -->
+            <div class="footer-container"></div>
+                <footer class="footer">
+                <hr class="footer-break">
+                <div class="social">
+                    <h3 id="social-heading" class="sr-only">Follow us on social media</h3>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <ul class="footer-links">
+                    <h3 id="footer-links-heading" class="sr-only">Footer Links</h3>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <p class="copyright">© 2025 <a style='color:inherit' href="/">WhyNot!</a> Some Rights Reserved</p>
+            </footer>
+        </div>
+    </div>
+    <script src="/js/explore.js"></script>
+</body>
+</html>

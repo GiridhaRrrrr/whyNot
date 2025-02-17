@@ -1,0 +1,59 @@
+<% layout('/layouts/boilerplate') %>
+
+   <body>
+        <div class="form-container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center mb-4">Edit-The-Answer</h1>
+                    <form method="POST" action="/posts/<%= id %>/answer/<%= answer._id %>?_method=PUT" class="needs-validation form-class" novalidate enctype="multipart/form-data">
+                        
+                        <!-- Question Input -->
+                        <div class="mb-3">
+                            <label for="Intuition" class="form-label">Enter your Intuition</label>
+                            <textarea name="answer[intuition]" class="form-control" placeholder="Enter your Intuition" required id="Intuition"><%= answer.intuition %></textarea>
+                        </div>
+        
+                        <!-- Description Input -->
+                        <div class="mb-3">
+                            <label for="explanation" class="form-label">Enter explanation</label>
+                            <textarea name="answer[explanation]" class="form-control" placeholder="Enter explanation" required id="explanation"><%= answer.explanation %></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="preview" class="form-label">Original-Answer-IMG</label><br>
+                            <img style="height: 150px; width: 150px;" src="<%= originalUrl %>" alt="original Img">
+                        </div>
+
+        
+                        <!-- Image URL Input -->
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Image URL (NOT MANDATORY)</label>
+                            <input type="file" class="form-control" id="img" name="post[img]" placeholder="Enter image link">
+                        </div>
+        
+                        <!-- Tags Input -->
+                        <div class="mb-3">
+                            <label for="tags" class="form-label">Reference</label>
+                            <input type="text" class="form-control" id="tag-input" placeholder="Enter Reference (comma-separated)">
+                            <div id="tags-container">
+                                <%answer.reference.forEach(function(ref) {  %>
+                                    <span class="tag" data-value="<%= ref %>">
+                                        <%= ref %>
+                                        <button type="button" class="btn-close remove-tag" aria-label="Close" onclick="removeTag('<%= ref %>')"></button>
+                                    </span>
+                                <% }); %>
+                            </div>
+                            <input type="hidden" name="answer[reference]" id="tags-hidden" value='<%= JSON.stringify(answer.reference) %>'>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button class="btn add-btn " type="submit">Update</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/js/forms.js"></script>
+   
+   </body>

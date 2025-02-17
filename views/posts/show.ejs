@@ -1,0 +1,111 @@
+<% layout('/layouts/boilerplate') %>
+
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="card-header">
+                <img src="<%= post.owner.img.url ? post.owner.img.url : 'https://plus.unsplash.com/premium_vector-1730127163758-5e2a1b4ad2a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFuaW1hdGVkJTIwcHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D' %>" alt="User Picture">
+                <span><%- post.owner.username %></span>
+                <span class="post-date">
+                    <%= new Date(Number(post.createdAt)).toLocaleString("en-IN", { 
+                        timeZone: "Asia/Kolkata", 
+                        day: "2-digit", 
+                        month: "short", 
+                        year: "numeric", 
+                        hour: "2-digit", 
+                        minute: "2-digit" 
+                    }) %>
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="card-content">
+                    <h2><%= post.question  %></h2>
+                    <!-- <% if (post.description.split(' ').length > 25) { %>
+                        <p><%= post.description.split(' ').slice(0, 25).join(' ') %>... <a href="#">more</a></p>
+                    <% } else { %>
+                        <p><%= post.description %></p>
+                    <% } %> -->
+                    <p><%= post.description %></p>
+                    <div class="tags" id="card-tags">
+                        <% if (post.tags && post.tags.length > 0) { %>
+                            <% for (let tag of post.tags) { %>
+                              <span id="card-tag" class="tag"><%= tag %></span>
+                            <% } %>
+                          <% } %>
+                                             
+                    </div>
+                    <div class="buttons">
+                        <% if(post.owner.username === currUser) { %>                            
+                            <a href="/posts/<%= post._id %>/edit"><button class="btn-1"><i class="fa-regular fa-pen-to-square"></i> Edit</button></a>
+                            <form method="Post" action="/posts/<%= post._id %>?_method=DELETE" style="display: inline;" >
+                                <button class="btn-2"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            </form>
+                        <% } else{ %>
+                            <a href=""><button class="btn-1"><i class="fa-solid fa-circle-up"></i> upVote</button></a>
+                            <a href="/posts/<%= post._id %>/answer"><button class="btn-2">Answer It</button></a>
+                        <% } %>
+                    </div>
+                    <!-- <div class="pending">PENDING</div> -->
+                </div>
+                <% if (post.img) { %>
+                    <div class="card-image">
+                        <img src="<%= post.img.url %>" alt="Project Image">
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="answerContainer">
+        <h1>Answers...</h1>
+        <% if (post.answers && post.answers.length > 0) { %>
+            <% for (let ans of post.answers) { %>
+            <div class="answer-card">
+                <div class="answer-card-header">
+                <div class="answer-card-user-info">
+                    <img src="<%= ans.author.img.url ? ans.author.img.url : 'https://plus.unsplash.com/premium_vector-1730127163758-5e2a1b4ad2a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFuaW1hdGVkJTIwcHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D' %>" alt="User Picture">
+                    <span><%= ans.author.username %></span>
+                </div>
+                <% if(currUser === ans.author.username) {%>
+                    <div class="answer-menu">
+                        <i class="fas fa-ellipsis-v menu-icon" onclick="toggleMenu()"></i>
+                        <div class="answer-menu-options" id="menuOptions">
+                        <a href="/posts/<%= post._id %>/answer/<%= ans._id %>"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                        <form action="/posts/<%= post._id %>/answer/<%= ans._id %>?_method=DELETE" method="POST">
+                            <a><button style="border: none; background-color: transparent;" class="delButton"><i class="fa-solid fa-trash-can"></i> DELETE</button></a>
+                        </form>
+                        </div>
+                    </div>
+                <% } %>
+                </div>
+                <div class="intuition-intro"><h2><%= ans.intuition %></h2></div>
+                <div class="answer-explanation"><p><%= ans.explanation %></p></div>
+                <div class="tags" id="answer-tags">
+                    <% if (ans.reference && ans.reference.length > 0) { %>
+                        <% for (let reference of ans.reference) { %>
+                          <span class="tag"><%= reference %></span>
+                        <% } %>
+                    <% } %>                                          
+                </div><br>
+                <% if (ans.img.url) { %>
+                <div class="answer-image">
+                    <img src="<%= ans.img.url %>" alt="Answer Image">
+                </div>
+                <% } %>
+
+                <div class="card-footer">
+                    <button class="btn1" onclick="toggleUpVote(this)"><i class="fas fa-thumbs-up up"></i> upVote</button>
+                    <button class="btn2" onclick="toggleDownVote(this)"><i class="fas fa-thumbs-down down"></i> downVote</button>
+                </div>                
+            </div>
+            <% } %>
+        <% } else { %>
+            <div class="alert alert-success alert-dismissible fade show col-10 offset-1" role="alert">
+                <p>No Answers currently!</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+    </div>
+    <script src="/js/postCard.js"></script>
+</body>

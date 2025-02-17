@@ -1,0 +1,57 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+        <% for(let post of posts) { %>
+            <a href="/posts/<%= post._id %>" class="card-link">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="<%= post.owner.img.url ? post.owner.img.url : 'https://plus.unsplash.com/premium_vector-1730127163758-5e2a1b4ad2a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFuaW1hdGVkJTIwcHJvZmlsZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D' %>" alt="User Picture">
+                            <span><%- post.owner.username %></span>
+                            <span class="post-date">
+                                <%= new Date(Number(post.createdAt)).toLocaleString("en-IN", { 
+                                    timeZone: "Asia/Kolkata", 
+                                    day: "2-digit", 
+                                    month: "short", 
+                                    year: "numeric", 
+                                    hour: "2-digit", 
+                                    minute: "2-digit" 
+                                }) %>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-content">
+                                <h2><%= post.question  %></h2>
+                                <% if (post.description.split(' ').length > 25) { %>
+                                    <p><%= post.description.split(' ').slice(0, 25).join(' ') %>... <span style="color: #007bff;">more</span></p>
+                                <% } else { %>
+                                    <p><%= post.description %></p>
+                                <% } %>
+                                <div class="tags">
+                                    <% if (post.tags && post.tags.length > 0) { %>
+                                        <% for (let tag of post.tags) { %>
+                                          <span class="tag"><%= tag %></span>
+                                        <% } %>
+                                      <% } %>
+                                                         
+                                </div>
+                                <div class="buttons">
+                                    <a href=""><button class="btn-1"><i class="fa-solid fa-circle-up"></i> upVote</button></a>
+                                    <% if(post.owner.username != currUser) { %>
+                                        <a href="/posts/<%= post._id %>/answer"><button class="btn-2">Answer It</button></a>
+                                    <% } else{ %>
+                                        <a href="/posts/<%= post._id %>"><button class="btn-2">View</button></a>
+                                    <% } %>
+                                </div>
+                                <!-- <div class="pending">PENDING</div> -->
+                            </div>
+                            <% if (post.img) { %>
+                                <div class="card-image">
+                                    <img src="<%= post.img.url %>" alt="Project Image">
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <% } %>
+</body>

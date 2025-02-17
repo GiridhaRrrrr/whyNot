@@ -1,0 +1,20 @@
+<% layout('/layouts/boilerplate') %>
+<head>
+    <link rel="stylesheet" href="/css/allUsers.css">
+</head>
+<div class="cards-container">
+    <% for(user of users) {%>
+        <a class="allUsers-a" href="/user/<%= user._id %>">
+            <div class="user-card">
+                <img src=<%= user.img  %> alt="User" class="user-img">
+                <div class="user-info">
+                    <h3><%= user.username %></h3>
+                    <p>Following: <%= user.following.length %> &nbsp; | &nbsp; Followers: <%= user.followers.length %></p>
+                </div>
+                <form action="">
+                    <button class="follow-btn">Follow</button>
+                </form>
+            </div>
+        </a>
+    <% } %>
+</div>

@@ -1,0 +1,48 @@
+<% layout('/layouts/boilerplate') %>
+
+   <body>
+        <div class="form-container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center mb-4">Create-a-Post</h1>
+                    <form method="post" action="/posts" class="needs-validation form-class" novalidate enctype="multipart/form-data">
+                        
+                        <!-- Question Input -->
+                        <div class="mb-3">
+                            <label for="question" class="form-label">What's the question? (limit it to 10 words)</label>
+                            <textarea name="post[question]" class="form-control" placeholder="Enter your question" required id="question"></textarea>
+                        </div>
+        
+                        <!-- Description Input -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">What's the description?</label>
+                            <textarea name="post[description]" class="form-control" placeholder="Enter description" required id="description"></textarea>
+                        </div>
+        
+                        <!-- Image URL Input -->
+                        <div class="mb-3">
+                            <label for="img" class="form-label">Image URL</label>
+                            <input type="file" class="form-control" id="img" name="post[img]" placeholder="Enter image link">
+                        </div>
+        
+                        <!-- Tags Input -->
+                        <div class="mb-3">
+                            <label for="tags" class="form-label">Tags</label>
+                            <input type="text" class="form-control" id="tag-input" placeholder="Enter tags (comma-separated)">
+                            <div id="tags-container"></div>
+                            <input type="hidden" name="post[tags]" id="tags-hidden">
+                        </div>
+                       
+        
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button class="btn add-btn " type="submit">Post</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/js/forms.js"></script>
+   
+   </body>
