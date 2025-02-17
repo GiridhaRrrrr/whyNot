@@ -112,4 +112,41 @@ router.delete('/:ansId',isLoggedIn, wrapAsync(async (req, res) => {
     res.redirect(`/posts/${id}`);       
 }));
 
+// dislike answer
+router.post("/:ansId/:userId/disLike", isLoggedIn, wrapAsync(async (req, res) => {
+    let {ansId, userId} = req.params;
+    let answer = await Answer.findById(ansId);
+
+    if(!answer){
+        req.flash("error", "Answer not found");
+        return res.redirect(req.get('Referrer') || "/posts/allPosts");
+    }
+
+    let liked = answer.votes.includes(userId);
+    if(liked){
+        answer.votes.pull(userId);
+    }
+    await answer.save();
+    res.redirect(req.get('Referrer') || '/posts/allPosts');
+}));
+
+router.post("/:ansId/:userId/like", isLoggedIn, wrapAsync(async (req, res) => {
+clea    let {ansId, userId} = req.params;
+    let answer = await Answer.findById(ansId);
+
+    if(!answer){
+        req.flash("error", "Answer not found");
+        return res.redirect(req.get('Referrer') || "/posts/allPosts");
+    }
+
+    let liked = answer.votes.includes(userId);
+    if(!liked){
+        answer.votes.push(userId);
+        await answer.save();
+    }
+
+    res.redirect(req.get('Referrer') || '/posts/allPosts');
+}));
+
+
 module.exports = router;

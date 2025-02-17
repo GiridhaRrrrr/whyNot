@@ -7,6 +7,7 @@ const upload = multer({ storage });
 let wrapAsync = require("../utils/wrapAsyncFunction.js");
 let Post = require("../models/posts.js");
 let Answer = require("../models/answers.js");
+let User = require("../models/users.js");
 const { isLoggedIn, validatePost } = require('../utils/middleware.js');
 
 // AllPosts
@@ -105,13 +106,40 @@ router.put('/:id',isLoggedIn,upload.single('post[img]'), validatePost, wrapAsync
 
 
 // delete post
-router.delete('/:id',isLoggedIn, wrapAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, wrapAsync(async (req, res) => {
     let {id} = req.params;
     let deletedPost = await Post.findByIdAndDelete(id);
     console.log(deletedPost);
     req.flash("error","Post deleted successfully");
     res.redirect('/posts');
 }));
+
+// UPvote
+router.post("/:id/:userId/upVote", isLoggedIn, wrapAsync(async (req, res) => {
+    let {id, userId} = req.params;
+    let post = await Post.findById(id);
+    
+    if (!post) {
+        req.flash("error", "Post not found");
+        return res.redirect(req.get('Referrer') || "/posts/allPosts");
+    }
+
+    // Ensure post.votes is always an array
+    post.votes = post.votes || [];
+
+    // Check if the user has already upvoted
+    let upvoted = post.votes.includes(userId);
+    if (upvoted) {
+        post.votes.pull(userId);  // Remove the user from the votes array if they've already voted
+    } else {
+        post.votes.push(userId);  // Add the user to the votes array if they haven't voted yet
+    }
+
+    await post.save();  // Save the updated post
+
+    res.redirect(req.get('Referrer') || '/posts/allPosts');
+}))
+
 
 
 module.exports = router;

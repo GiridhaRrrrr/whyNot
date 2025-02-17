@@ -6,13 +6,17 @@
     <% for(user of users) {%>
         <a class="allUsers-a" href="/user/<%= user._id %>">
             <div class="user-card">
-                <img src=<%= user.img  %> alt="User" class="user-img">
+                <img src=<%= user.img.url  %> alt="User" class="user-img">
                 <div class="user-info">
                     <h3><%= user.username %></h3>
                     <p>Following: <%= user.following.length %> &nbsp; | &nbsp; Followers: <%= user.followers.length %></p>
                 </div>
-                <form action="">
-                    <button class="follow-btn">Follow</button>
+                <form method="post" action="/user/<%= user._id %>/follow">
+                    <% if(currUserId != "" && user.followers.includes(currUserId)) { %>
+                        <button class="follow-btn">UnFollow</button>
+                    <% } else { %>
+                        <button class="follow-btn">Follow</button>
+                    <% } %>                                      
                 </form>
             </div>
         </a>

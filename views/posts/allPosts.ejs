@@ -35,7 +35,19 @@
                                                          
                                 </div>
                                 <div class="buttons">
-                                    <a href=""><button class="btn-1"><i class="fa-solid fa-circle-up"></i> upVote</button></a>
+                                    <% if(currUser) { %>
+                                        <form style="display: inline-block;" method="post" action="/posts/<%= post._id %>/<%= currUserId %>/upVote">
+                                            <% if(post.votes && Array.isArray(post.votes) && !post.votes.includes(currUserId)) { %>
+                                                <!-- upvote button, not upvoted yet -->
+                                                <button class="btn-1 upvote-btn"><i class="fa-solid fa-circle-up"></i> upVote</button>
+                                            <% } else { %>
+                                                <!-- upvote button, already upvoted -->
+                                                <button class="btn-1 upvoted-btn"><i class="fa-solid fa-circle-up"></i> upVoted</button>
+                                            <% } %>
+                                        </form>
+                                    <% } %>
+                                                                      
+                                                                    
                                     <% if(post.owner.username != currUser) { %>
                                         <a href="/posts/<%= post._id %>/answer"><button class="btn-2">Answer It</button></a>
                                     <% } else{ %>

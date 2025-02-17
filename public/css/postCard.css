@@ -98,23 +98,54 @@ p{
     cursor: pointer;
     margin-right: 10px;
 }
-.btn-1 {
+/* .btn-1 {
     background: #007bff;
     color: white;
     padding: 10px 15px;
-    border: none;
+    border: #b92b27;
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
-}
-.btn-2:hover {
-    background: #db3e39;
+} */
+
+.btn-1 {
     color: white;
+    padding: 10px 15px;
+    border: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    background: #333; /* Default background */
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
+
+.btn-1.upvote-btn {
+    background: #007bff; /* Green background for not yet upvoted */
+}
+
+.btn-1.upvoted-btn {
+    background: #b92b27; /* Red background when upvoted */
+    cursor: not-allowed; /* Disable button when upvoted */
+}
+
 .btn-1:hover {
+    background: #666; /* Slight change on hover for default background */
+}
+
+.btn-1.upvote-btn:hover {
+    background: #45a049; /* Hover effect for not upvoted */
+}
+
+.btn-1:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(185, 43, 39, 0.5); /* Focus ring on upvoted */
+}
+
+/* .btn-1:hover {
     background: #0056b3;
     color: white;
-}
+} */
 .card-image img {
     width: 300px;
     height: auto;

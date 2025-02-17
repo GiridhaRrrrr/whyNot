@@ -71,9 +71,11 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     if(req.user){
         res.locals.currUser = req.user.username;
+        res.locals.currUserId = req.user._id;        
     }
     else{
         res.locals.currUser = "";
+        res.locals.currUserId = "";
     }
     return next();
 });

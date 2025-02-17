@@ -41,7 +41,18 @@
                                 <button class="btn-2"><i class="fa-solid fa-trash-can"></i> Delete</button>
                             </form>
                         <% } else{ %>
-                            <a href=""><button class="btn-1"><i class="fa-solid fa-circle-up"></i> upVote</button></a>
+                            <% if(currUser) { %>
+                                <% if(currUser) { %>
+                                    <form style="display: inline-block;" method="post" action="/posts/<%= post._id %>/<%= currUserId %>/upVote">
+                                        <% if(post.votes && Array.isArray(post.votes) && !post.votes.includes(currUserId)) { %>
+                                            <button class="btn-1 upvote-btn"><i class="fa-solid fa-circle-up"></i> upVote</button>
+                                        <% } else { %>
+                                            <button class="btn-1 upvoted-btn"><i class="fa-solid fa-circle-up"></i> upVoted</button>
+                                        <% } %>
+                                    </form>
+                                <% } %>
+                                
+                            <% } %>
                             <a href="/posts/<%= post._id %>/answer"><button class="btn-2">Answer It</button></a>
                         <% } %>
                     </div>
@@ -93,11 +104,22 @@
                     <img src="<%= ans.img.url %>" alt="Answer Image">
                 </div>
                 <% } %>
-
-                <div class="card-footer">
-                    <button class="btn1" onclick="toggleUpVote(this)"><i class="fas fa-thumbs-up up"></i> upVote</button>
-                    <button class="btn2" onclick="toggleDownVote(this)"><i class="fas fa-thumbs-down down"></i> downVote</button>
-                </div>                
+                
+                <% if(currUser) {%>
+                    <div class="card-footer">
+                        <form method="post" action="/posts/<%= post._id %>/answer/<%= ans._id %>/<%= currUserId %>/like">
+                            <% if(ans.votes.includes(currUserId)) {%>
+                                <button class="btn1 red" onclick="toggleUpVote(this)"><i class="fas fa-thumbs-up up"></i> <%= ans.votes.length %>-<b>upVote</b></button>
+                            <% } else{ %>
+                                <button class="btn1" onclick="toggleUpVote(this)"><i class="fas fa-thumbs-up up"></i> <%= ans.votes.length %>-<b>upVote</b></button>
+                            <% } %>
+                        </form>
+                        <form method="post" action="/posts/<%= post._id %>/answer/<%= ans._id %>/<%= currUserId %>/disLike">
+                            <button class="btn2" onclick="toggleDownVote(this)"><i class="fas fa-thumbs-down down"></i> downVote</button>
+                        </form>
+                    </div> 
+                <% } %>
+               
             </div>
             <% } %>
         <% } else { %>
