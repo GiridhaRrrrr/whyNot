@@ -30,7 +30,7 @@ label{
     width: 100%;
     padding: 10px;
     font-size: 18px;
-    background-color: #007bff;
+    background-color: #8c100c;
 }
 
 
@@ -52,3 +52,21 @@ label{
 .btn-close{
     font-size: 0.75rem;
 }
+
+@media (max-width: 640px) { 
+    .form-container{
+        margin-top: 3rem;
+    }
+}
+
+/* @media (min-width: 640px ) and (max-width: 850px) { 
+    .main-block{
+        margin-left: 30%;
+    }   
+ } 
+ @media (min-width: 850px) {
+   
+    .main-block{
+        margin-left: 20%;
+    }   
+}  */

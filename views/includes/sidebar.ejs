@@ -36,3 +36,24 @@
     </button>
 </div>
 
+<!-- small size -->
+<!-- <div class="top-bar"> -->
+    <div class="header">
+        <div class="small-logo">
+            <span><i class="fa-brands fa-google-wallet"></i> WhyNot</span>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <a href="/posts"><i class="fa-solid fa-house"></i></a>
+        <a href="/user/allUsers"><i class="fa-solid fa-users"></i></a>
+        <a href="/posts/new"><i class="fa-solid fa-circle-plus"></i></a>
+        <% if(currUser){ %>
+            <a href="/user/logout"><i class="fa-solid fa-right-from-bracket"></i></a>           
+        <% } else{%>
+            <a href="/user/login"><i class="fa-solid fa-clipboard-list"></i></a>
+            <a href="/user/signup"><i class="fa-solid fa-user-plus"></i></a>
+        <% } %>
+    </div>
+<!-- </div> -->
+

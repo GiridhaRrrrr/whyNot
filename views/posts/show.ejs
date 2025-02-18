@@ -58,7 +58,7 @@
                     </div>
                     <!-- <div class="pending">PENDING</div> -->
                 </div>
-                <% if (post.img) { %>
+                <% if (post.img && post.img.url) { %>
                     <div class="card-image">
                         <img src="<%= post.img.url %>" alt="Project Image">
                     </div>

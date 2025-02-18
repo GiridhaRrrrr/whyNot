@@ -120,4 +120,9 @@
 
   }
   
+  @media (max-width: 640px) { 
+    .sigup-container{
+        margin-top: 5rem;
+    }
+}
       
