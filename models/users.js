@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
+    googleId: {
+        type: String,  // Store Google user ID
+        unique: true,
+        sparse: true  // Allows users without Google ID (local users)
+    },
     email: {
         type: String,
         required: true,
@@ -33,7 +38,7 @@ const userSchema = new Schema({
     }],
 });
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);//{ usernameField: "email" } if we want default to be email
 
 let User = mongoose.model('User', userSchema);
 

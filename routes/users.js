@@ -17,12 +17,14 @@ router.get("/signup", (req, res) => {
 });
 router.post("/signup", upload.single('img'), wrapAsync(async (req, res, next) => {
     try {
-        let url = req.file.path;
-        let filename = req.file.filename;
-
         let { email, username, password } = req.body;
         let newUser = new User({ email, username });
-        newUser.img = { url, filename };
+        if(req.file){
+            newUser.img = {
+                 url: req.file.path,
+                 filename: req.file.filename,
+                };
+        }
         let registeredUser = await User.register(newUser, password);
         console.log(registeredUser);
         // after Signup direct Login
@@ -50,9 +52,9 @@ router.post('/login',savedRedirecturl, passport.authenticate("local",
         req.flash("success", "Welcome Back to whyNot!");
         if(res.locals.redirectUrl){
             let redirect = res.locals.redirectUrl;
-            return res.redirect(redirect || "/posts");
+            return res.redirect(redirect || "/posts/allPosts");
         }
-        res.redirect("/posts");        
+        res.redirect("/posts/allPosts");        
 })
 
 // logout
@@ -114,6 +116,20 @@ router.post("/:id/follow", isLoggedIn, async (req, res) => {
         res.redirect("/user/allUsers");
     }
 });
+
+// google routes
+
+router.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/user/login', failureFlash: true }),
+    (req, res) => {
+        req.flash("success", "Welcome Back to whyNot!");
+        return res.redirect('/posts');
+    }
+);
+
 
 
 module.exports = router;

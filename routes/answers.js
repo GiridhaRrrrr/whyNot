@@ -65,8 +65,10 @@ router.post('/',isLoggedIn,upload.single("answer[img]"), validateAnswer, wrapAsy
 router.get('/:ansId',isLoggedIn, wrapAsync(async (req, res) => {
     let { id, ansId } = req.params;
     let answer = await Answer.findById(ansId);
-    let originalUrl = answer.img.url;
-    originalUrl = originalUrl.replace("/upload", "/upload/w_250");
+    if(answer.img.url){
+        let originalUrl = answer.img.url;
+        originalUrl = originalUrl.replace("/upload", "/upload/w_250");
+    }
     res.render('answers/edit', { answer, id, originalUrl });
 }));
 
@@ -131,7 +133,7 @@ router.post("/:ansId/:userId/disLike", isLoggedIn, wrapAsync(async (req, res) =>
 }));
 
 router.post("/:ansId/:userId/like", isLoggedIn, wrapAsync(async (req, res) => {
-clea    let {ansId, userId} = req.params;
+    let {ansId, userId} = req.params;
     let answer = await Answer.findById(ansId);
 
     if(!answer){
