@@ -20,11 +20,6 @@ router.get('/',isLoggedIn, wrapAsync(async (req, res) => {
 router.post('/',isLoggedIn,upload.single("answer[img]"), validateAnswer, wrapAsync(async (req, res) => {
     let { id } = req.params;
 
-    if(req.file){
-        let url = req.file.path;
-        let filename = req.file.filename;
-    }
-
     let post = await Post.findById(id);
     if (!post) {
         req.flash("error", "Post not found!");
@@ -48,7 +43,10 @@ router.post('/',isLoggedIn,upload.single("answer[img]"), validateAnswer, wrapAsy
     newAnswer.author = req.user._id;
     post.answers.push(newAnswer);
     if(req.file){
-        newAnswer.img = {url, filename};
+        newAnswer.img = {
+            url: req.file.path,
+            filename: req.file.filename
+         };
     }
     await newAnswer.save();
     await post.save();
@@ -68,8 +66,10 @@ router.get('/:ansId',isLoggedIn, wrapAsync(async (req, res) => {
     if(answer.img.url){
         let originalUrl = answer.img.url;
         originalUrl = originalUrl.replace("/upload", "/upload/w_250");
+        return res.render('answers/edit', { answer, id, originalUrl });
     }
-    res.render('answers/edit', { answer, id, originalUrl });
+    res.render('answers/edit', { answer, id });
+    
 }));
 
 // update answer

@@ -22,12 +22,6 @@ let User = require('./models/users.js')
 // Error-Handler
 let ExpressError = require("./utils/ExpressError.js")
 
-// routes
-let postRoutes = require("./routes/posts.js")
-let answerRoutes = require("./routes/answers.js")
-let userRoutes = require("./routes/users.js")
-
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.engine('ejs', ejsMate);
@@ -36,6 +30,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded( {extended : true} ));
 app.use(express.json());
 app.use(methodOverride('_method'));
+
+// routes
+let postRoutes = require("./routes/posts.js")
+let answerRoutes = require("./routes/answers.js")
+let userRoutes = require("./routes/users.js")
+let geminiRoutes = require("./routes/gemini-config.js");
 
 
 main()
@@ -92,6 +92,8 @@ app.use("/posts", postRoutes);
 // answer Routes
 app.use("/posts/:id/answer", answerRoutes);
 
+// gemini text
+app.use("/generate-text", geminiRoutes);
 
 
 app.all('*', (req, res, next) => {

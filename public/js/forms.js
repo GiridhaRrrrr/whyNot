@@ -99,3 +99,34 @@ function initializeFormValidation() {
 }
 
 initializeFormValidation();
+
+// Gemini Integration for AI Suggestions
+async function generateText(fieldId) {
+    let inputElement = document.getElementById(fieldId);
+    let userInput = inputElement.value.trim();
+
+    if (!userInput) {
+        alert("Please enter some text before generating.");
+        return;
+    }
+
+    try {
+        const response = await fetch("/generate-text", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ fieldId, userInput }),
+        });
+
+        const data = await response.json();
+        if (data.generatedText) {
+            inputElement.value = data.generatedText; // Display the generated text
+        } else {
+            alert("Failed to generate AI text.");
+        }
+    } catch (error) {
+        console.error("Error generating text:", error);
+        alert("AI request failed.");
+    }
+}

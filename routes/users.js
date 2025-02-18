@@ -52,9 +52,9 @@ router.post('/login',savedRedirecturl, passport.authenticate("local",
         req.flash("success", "Welcome Back to whyNot!");
         if(res.locals.redirectUrl){
             let redirect = res.locals.redirectUrl;
-            return res.redirect(redirect || "/posts/allPosts");
+            return res.redirect(redirect || "/posts");
         }
-        res.redirect("/posts/allPosts");        
+        res.redirect("/posts");        
 })
 
 // logout

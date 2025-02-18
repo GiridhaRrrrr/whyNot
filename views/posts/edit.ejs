@@ -19,10 +19,12 @@
                             <textarea name="post[description]" class="form-control" placeholder="Enter description" required id="description"><%= post.description %></textarea>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="preview" class="form-label">Original-Post-IMG</label><br>
-                            <img style="height: 150px; width: 150px;" src="<%= originalUrl %>" alt="original Img">
-                        </div>
+                        <% if(post.img) {%>
+                            <div class="mb-3">
+                                <label for="preview" class="form-label">Original-Post-IMG</label><br>
+                                <img style="height: 150px; width: 150px;" src="<%= originalUrl %>" alt="original Img">
+                            </div>
+                        <% } %>
         
                         <!-- Image URL Input -->
                         <div class="mb-3">

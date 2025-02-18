@@ -10,13 +10,19 @@
                         <!-- Question Input -->
                         <div class="mb-3">
                             <label for="question" class="form-label">What's the question? (limit it to 10 words)</label>
-                            <textarea name="post[question]" class="form-control" placeholder="Enter your question" required id="question"></textarea>
+                            <div class="input-group">
+                                <textarea name="post[question]" class="form-control" placeholder="Enter your question" required id="question"></textarea>
+                                <button type="button" class="btn btn-outline-danger" onclick="generateText('question')">AI <i class="fa-brands fa-mailchimp"></i></button>
+                            </div>
                         </div>
-        
+
                         <!-- Description Input -->
                         <div class="mb-3">
                             <label for="description" class="form-label">What's the description?</label>
-                            <textarea name="post[description]" class="form-control" placeholder="Enter description" required id="description"></textarea>
+                            <div class="input-group">
+                                <textarea name="post[description]" class="form-control" placeholder="Enter description" required id="description"></textarea>
+                                <button type="button" class="btn btn-outline-danger" onclick="generateText('description')">AI <i class="fa-brands fa-mailchimp"></i></button>
+                            </div>
                         </div>
         
                         <!-- Image URL Input -->

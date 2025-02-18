@@ -18,12 +18,6 @@ router.get('/', wrapAsync(async (req, res) => {
 
 // create a post
 router.post('/',isLoggedIn,upload.single('post[img]'), validatePost, wrapAsync(async (req, res) => {
-
-    if(req.file){
-        let url = req.file.path;
-        let filename = req.file.filename;
-    }
-
     let tagsArray = req.body.post.tags; // Get tags from form
 
     if (typeof tagsArray === 'string') {
@@ -41,7 +35,10 @@ router.post('/',isLoggedIn,upload.single('post[img]'), validatePost, wrapAsync(a
     let newPost = new Post(req.body.post);
     newPost.owner = req.user._id;
     if(req.file){
-        newPost.img = {url, filename};
+        newPost.img = {
+            url: req.file.path,
+            filename: req.file.filename
+         };
     }
     await newPost.save();
     console.log(newPost);
@@ -67,9 +64,12 @@ router.get('/:id', wrapAsync(async (req, res) => {
 router.get('/:id/edit',isLoggedIn, wrapAsync(async (req, res) => {
     let {id} = req.params;
     let post = await Post.findById(id);
-    let originalUrl = post.img.url;
-    originalUrl = originalUrl.replace("/upload", "/upload/w_250");
-    res.render('posts/edit', {post, originalUrl});
+    if(post.img){
+        let originalUrl = post.img.url;
+        originalUrl = originalUrl.replace("/upload", "/upload/w_250");
+        return res.render('posts/edit', {post, originalUrl});
+    }
+    res.render('posts/edit', {post});    
 }));
 
 // update post

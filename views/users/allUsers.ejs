@@ -9,7 +9,7 @@
                 <img src=<%= user.img.url  %> alt="User" class="user-img">
                 <div class="user-info">
                     <h3><%= user.username %></h3>
-                    <p>Following: <%= user.following.length %> &nbsp; | &nbsp; Followers: <%= user.followers.length %></p>
+                    <p>Following: <%= user.following.length %> &nbsp; |  Followers: <%= user.followers.length %></p>
                 </div>
                 <form method="post" action="/user/<%= user._id %>/follow">
                     <% if(currUserId != "" && user.followers.includes(currUserId)) { %>

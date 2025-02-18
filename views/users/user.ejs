@@ -20,7 +20,7 @@
     </div>
     <h1 class="posts-title">MY POSTS :</h1>
     <div class="allPosts">
-        <% if(userPosts) {%>
+        <% if(userPosts && userPosts.length > 0) {%>
             <% for(let post of userPosts) { %>
                 <a href="/posts/<%= post._id %>" class="card-link">
                     <div class="card-container">
@@ -78,7 +78,7 @@
                 <p>No Posts Yet!</p>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <% } %>
+        <% } %>
     </div>
 
 
