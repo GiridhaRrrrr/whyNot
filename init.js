@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 let Post = require("./models/posts.js");
 const Answer = require('./models/answers.js');
 
+const url = `mongodb+srv://whyNot-admin:EaNv5tjkVPw8rPEG@whynot.o1vnr.mongodb.net/?retryWrites=true&w=majority&appName=whyNot`
+
 main()
 .then(()=>{
     console.log("connected to database");
@@ -9,144 +11,141 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/whyNot');
+  await mongoose.connect(url);
 }
 
-let posts = [
+const posts = [
   {
-    "question": "What is the best way to learn JavaScript?",
-    "description": "Looking for resources and tips to master JavaScript.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?coding",
-      "filename": "coding1.jpg"
-    },
-    "votes": [],
-    "tags": ["JavaScript", "programming", "learning"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "What are the impacts of climate change?",
+      description: "How is climate change affecting our environment and daily lives?",
+      img: {
+          url: "https://images.unsplash.com/photo-1570095378004-ce65d6c2d5bb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNsaW1hdGUlMjBjaGFuZ2V8ZW58MHx8MHx8fDA%3D",
+          filename: "climate_change.jpg",
+      },
+      votes: [],
+      tags: ["Climate Change", "Environment"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "How to cook the perfect pasta?",
-    "description": "Any tips for making pasta like a pro?",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?pasta",
-      "filename": "pasta1.jpg"
+    question: "What are the benefits of electric vehicles?",
+    description: "Discuss the advantages of using electric cars over conventional vehicles.",
+    img: {
+        url: "https://plus.unsplash.com/premium_photo-1664283228670-83be9ec315e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZWxlY3RyaWMlMjB2ZWNoaWNsZXN8ZW58MHwwfDB8fHww",
+        filename: "electric_vehicles.jpg",
     },
-    "votes": [],
-    "tags": ["cooking", "pasta", "food"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+    votes: [],
+    tags: ["Electric Vehicles", "Technology"],
+    answers: [],
+    owner: "67b9b706398c2a0934b3af96",
+    createdAt: Date.now(),
   },
   {
-    "question": "What are the benefits of meditation?",
-    "description": "Interested in starting meditation and want to know its benefits.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?meditation",
-      "filename": "meditation1.jpg"
-    },
-    "votes": [],
-    "tags": ["meditation", "wellness", "health"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "How does plastic pollution impact marine life?",
+      description: "Discuss the effects of plastic waste on ocean ecosystems.",
+      img: {
+          url: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhc3RpYyUyMHBvbGx1dGlvbnxlbnwwfHwwfHx8MA%3D%3D",
+          filename: "plastic_pollution.jpg",
+      },
+      votes: [],
+      tags: ["Plastic Pollution", "Marine Life"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "How to improve your photography skills?",
-    "description": "Tips and tricks to take better photos.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?photography",
-      "filename": "photography1.jpg"
-    },
-    "votes": [],
-    "tags": ["photography", "skills", "tips"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "What is the significance of renewable energy sources?",
+      description: "Explain the importance and benefits of using renewable energy.",
+      img: {
+          url: "https://images.unsplash.com/photo-1548337138-e87d889cc369?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVuZXdhYmxlJTIwZW5lcmd5fGVufDB8fDB8fHww",
+          filename: "renewable_energy.jpg",
+      },
+      votes: [],
+      tags: ["Renewable Energy", "Sustainability"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "What is the best way to stay fit?",
-    "description": "Looking for advice on staying fit and healthy.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?fitness",
-      "filename": "fitness1.jpg"
-    },
-    "votes": [],
-    "tags": ["fitness", "health", "exercise"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "How does urbanization affect wildlife?",
+      description: "Examine the consequences of expanding urban areas on wildlife habitats.",
+      img: {
+          url: "https://images.unsplash.com/photo-1516628368662-4220aaf9339d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHdpbGRsaWZlfGVufDB8MHwwfHx8MA%3D%3D",
+          filename: "urbanization_wildlife.jpg",
+      },
+      votes: [],
+      tags: ["Urbanization", "Wildlife"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "How to start a successful blog?",
-    "description": "Advice and tips for starting a blog that people will read.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?blogging",
-      "filename": "blogging1.jpg"
-    },
-    "votes": [],
-    "tags": ["blogging", "writing", "online"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "What are the challenges of space exploration?",
+      description: "Discuss the difficulties and advancements in space exploration.",
+      img: {
+          url: "https://plus.unsplash.com/premium_photo-1720965218422-0ad3befa4198?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2UlMjBleHBsb3Npb258ZW58MHwwfDB8fHww",
+          filename: "space_exploration.jpg",
+      },
+      votes: [],
+      tags: ["Space Exploration", "Technology"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "What are the must-read books of 2025?",
-    "description": "Looking for book recommendations for this year.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?books",
-      "filename": "books1.jpg"
-    },
-    "votes": [],
-    "tags": ["books", "reading", "recommendations"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "How does deforestation contribute to climate change?",
+      description: "Analyze the relationship between deforestation and global warming.",
+      img: {
+          url: "https://plus.unsplash.com/premium_photo-1661814320476-721abd8135a0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVmb3Jlc3RhdGlvbnxlbnwwfDB8MHx8fDA%3D",
+          filename: "deforestation.jpg",
+      },
+      votes: [],
+      tags: ["Deforestation", "Climate Change"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "How to travel on a budget?",
-    "description": "Tips and tricks for traveling without breaking the bank.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?travel",
-      "filename": "travel1.jpg"
-    },
-    "votes": [],
-    "tags": ["travel", "budget", "tips"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "What are the effects of air pollution on human health?",
+      description: "Explore how air pollution impacts respiratory and overall health.",
+      img: {
+          url: "https://images.unsplash.com/photo-1582980752625-10783b273e2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFpciUyMHBvbGx1dGlvbnxlbnwwfDB8MHx8fDA%3D",
+          filename: "air_pollution.jpg",
+      },
+      votes: [],
+      tags: ["Air Pollution", "Health"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "What are the best practices for remote work?",
-    "description": "Advice for working efficiently from home.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?remotework",
-      "filename": "remotework1.jpg"
-    },
-    "votes": [],
-    "tags": ["remotework", "productivity", "tips"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
+      question: "How can we promote sustainable agriculture?",
+      description: "Suggest ways to enhance sustainability in agricultural practices.",
+      img: {
+          url: "https://plus.unsplash.com/premium_photo-1661962848214-ff9e66df7810?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3VzdGFpbmFibGUlMjBhZ2ljdWx0dXJlfGVufDB8MHwwfHx8MA%3D%3D",
+          filename: "sustainable_agriculture.jpg",
+      },
+      votes: [],
+      tags: ["Sustainable Agriculture", "Farming"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
   },
   {
-    "question": "How to learn a new language quickly?",
-    "description": "Techniques and resources for fast language learning.",
-    "img": {
-      "url": "https://source.unsplash.com/random/300x200?language",
-      "filename": "language1.jpg"
-    },
-    "votes": [],
-    "tags": ["language", "learning", "tips"],
-    "answers": [],
-    "owner": "67b09987880cfcb16174ce49",
-    "createdAt": "Sat Feb 15 2025 19:14:03 GMT+0900"
-  }
-]
-
-
-
+      question: "How do coral reefs protect coastal regions?",
+      description: "Explain the role of coral reefs in safeguarding coastal areas from erosion.",
+      img: {
+          url: "https://images.unsplash.com/photo-1706737373590-8df9e7e2b5ed?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          filename: "coral_reefs.jpg",
+      },
+      votes: [],
+      tags: ["Coral Reefs", "Environment"],
+      answers: [],
+      owner: "67b9b706398c2a0934b3af96",
+      createdAt: Date.now(),
+  },
+];
   
 
 async function insertData() {

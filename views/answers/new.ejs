@@ -18,17 +18,17 @@
             </div>
             <div class="card-body">
                 <div class="card-content">
-                    <h2><%= post.question  %></h2>
+                    <h2 class="galindo-regular"><%= post.question  %></h2>
                     <!-- <% if (post.description.split(' ').length > 25) { %>
                         <p><%= post.description.split(' ').slice(0, 25).join(' ') %>... <a href="#">more</a></p>
                     <% } else { %>
                         <p><%= post.description %></p>
                     <% } %> -->
-                    <p><%= post.description %></p>
+                    <p class="rubik-description"><%= post.description %></p>
                     <div id="postcard-card-tags">
                         <% if (post.tags && post.tags.length > 0) { %>
                             <% for (let tag of post.tags) { %>
-                              <span id="postcard-card-tag"><%= tag %></span>
+                              <span id="postcard-card-tag"  class="cabin-sketch-bold" ><%= tag %></span>
                             <% } %>
                           <% } %>
                                              
