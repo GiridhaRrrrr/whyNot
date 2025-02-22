@@ -59,7 +59,7 @@
 }
 #card-tag {
     display: inline-block;
-    background: #ddd;
+    background-color: #E3F2FD;
     padding: 5px 10px;
     margin-right: 3px;
     font-size: 14px;
@@ -269,4 +269,24 @@ p{
 .red{
     color: #b92b27;
 }
+
+.galindo-regular {
+    font-family: "Galindo", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .rubik-description {
+    font-family: "Rubik", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .cabin-sketch-bold {
+    font-family: "Cabin Sketch", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
 

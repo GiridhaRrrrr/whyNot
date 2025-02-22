@@ -147,6 +147,18 @@
     width: 25px;
 }
 
+.galindo-regular {
+    font-family: "Galindo", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .pacifico-regular {
+    font-family: "Pacifico", serif;
+    font-weight: 500;
+    font-style: normal;
+  }  
+
 @media (max-width: 640px) { 
     .sidebar{
         display: none;

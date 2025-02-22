@@ -41,7 +41,7 @@ router.post('/',isLoggedIn,upload.single('post[img]'), validatePost, wrapAsync(a
          };
     }
     await newPost.save();
-    console.log(newPost);
+    // console.log(newPost);
     req.flash("success", "New post created");
     res.redirect('/posts');
 }));
@@ -109,7 +109,7 @@ router.put('/:id',isLoggedIn,upload.single('post[img]'), validatePost, wrapAsync
 router.delete('/:id', isLoggedIn, wrapAsync(async (req, res) => {
     let {id} = req.params;
     let deletedPost = await Post.findByIdAndDelete(id);
-    console.log(deletedPost);
+    // console.log(deletedPost);
     req.flash("error","Post deleted successfully");
     res.redirect('/posts');
 }));

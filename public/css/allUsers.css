@@ -62,6 +62,13 @@
     color: white;
 }
 
+.montserrat-username {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
 @media (max-width: 640px) { 
     .cards-container{
         margin-top: 1.5rem;

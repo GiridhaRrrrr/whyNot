@@ -51,7 +51,7 @@ router.post('/',isLoggedIn,upload.single("answer[img]"), validateAnswer, wrapAsy
     await newAnswer.save();
     await post.save();
 
-    console.log("New Answer with References:", newAnswer);
+    // console.log("New Answer with References:", newAnswer);
     
     req.flash("success", "Answer posted successfully");
     res.redirect(`/posts/${id}`);

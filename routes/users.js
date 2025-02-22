@@ -26,7 +26,7 @@ router.post("/signup", upload.single('img'), wrapAsync(async (req, res, next) =>
                 };
         }
         let registeredUser = await User.register(newUser, password);
-        console.log(registeredUser);
+        // console.log(registeredUser);
         // after Signup direct Login
         req.login(registeredUser, (err) => {
             if (err) {

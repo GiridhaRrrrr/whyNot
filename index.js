@@ -9,7 +9,9 @@ const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 const session=require("express-session")
+const MongoStore = require('connect-mongo')
 const flash=require("connect-flash")
+
 
 
 // passport-local
@@ -38,6 +40,9 @@ let userRoutes = require("./routes/users.js")
 let geminiRoutes = require("./routes/gemini-config.js");
 
 
+// const url = 'mongodb://127.0.0.1:27017/whyNot';
+const dbUrl = process.env.ATLASDB_URL; 
+
 main()
 .then(()=>{
     console.log("connected to database");
@@ -45,11 +50,25 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/whyNot');
+  await mongoose.connect(dbUrl);
 }
+
+// connect mongo-store options
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: "helloSecreat",
+    },
+    touchAfter: 24 * 3600,
+}); 
+
+store.on("error", () => {
+    console.log("ERROR IN MONGO SESSION STORE", err);
+});
 
 // sessions
 const sessionOptions={
+    store,
     secret:"helloSecreat",
     resave:false,
     saveUninitialized: true,
