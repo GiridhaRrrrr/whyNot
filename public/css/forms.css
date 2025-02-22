@@ -54,6 +54,12 @@ label{
     font-size: 0.75rem;
 }
 
+.galindo-regular {
+    font-family: "Galindo", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
 @media (max-width: 640px) { 
     .form-container{
         margin-top: 3rem;

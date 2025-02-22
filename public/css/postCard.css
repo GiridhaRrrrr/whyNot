@@ -151,15 +151,6 @@ p{
     height: auto;
     object-fit: cover;
 }
-@media (max-width: 768px) {
-    .card-body {
-        flex-direction: column;
-    }
-    .card-image img {
-        width: 100%;
-    }
-}
-
 
 /* answer-card */
 .answerContainer {
@@ -289,4 +280,23 @@ p{
     font-style: normal;
   }
   
+  @media (max-width: 860px) {
+    .card-body {
+        flex-direction: column;
+    }
+    .card-image img {
+        width: 100%;
+    }
+    .post-date{
+        display: none;
+    }
+
+    .card-header{
+        display: flex;
+        justify-content:left;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+}
 

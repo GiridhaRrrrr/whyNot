@@ -358,6 +358,68 @@
   }
 }
 
+@media (max-width: 640px) { 
+  .sideblock {
+      display: none;
+  }  
+
+  .explanation-main {
+      flex-direction: column; /* Stack elements */
+      height: auto; /* Let content define height */
+  }
+
+  .text, .count {
+      width: 100%; /* Take full width */
+  }
+
+  .explanation-heading {
+      font-size: 1.2rem; /* Slightly larger for readability */
+  }
+
+  .text .text-p {
+      font-size: 14px; /* Reduce font size for better fit */
+  }
+
+ .counter-container {
+      margin-left: 5px;
+  }
+}
+
+/* ✅ Tablets (Medium Screens - Below 1024px) */
+@media (max-width: 1024px) {
+  .explanation-main {
+      flex-direction: column;
+      height: auto;
+  }
+
+  .text, .count {
+      width: 100%; /* Make both sections full width */
+  }
+
+  .explanation {
+      font-size: 18px; /* Slightly smaller font */
+
+  }
+
+  .text .text-p {
+      font-size: 15px;
+  }
+
+  .explanation-heading {
+      font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .explanation-main {
+      height: auto;
+  }
+
+  .explanation {
+      font-size: 19px;
+  }
+}
+
 /* fotter */
  
   .footer-container{
