@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 let Post = require("./models/posts.js");
 const Answer = require('./models/answers.js');
 
-const url = `mongodb+srv://whyNot-admin:EaNv5tjkVPw8rPEG@whynot.o1vnr.mongodb.net/?retryWrites=true&w=majority&appName=whyNot`
+const url = process.env.ATLASDB_URL;
 
 main()
 .then(()=>{

@@ -57,7 +57,7 @@ async function main() {
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: "helloSecreat",
+        secret: process.env.SECRET,
     },
     touchAfter: 24 * 3600,
 }); 
@@ -69,13 +69,13 @@ store.on("error", () => {
 // sessions
 const sessionOptions={
     store,
-    secret:"helloSecreat",
-    resave:false,
+    secret: process.env.SECRET,
+    resave: false,
     saveUninitialized: true,
     cookie:{//==>used to store our expire date which is by default set to  null 
-      expires:Date.now()+ 7 * 24 * 60 * 60 * 1000,//==>(7days,24hours,60mins,60sec,1000 milli secs)
-      maxAge:7 * 24 * 60 * 60 * 1000,
-      httpOnly:true, 
+      expires: Date.now()+ 7 * 24 * 60 * 60 * 1000,//==>(7days,24hours,60mins,60sec,1000 milli secs)
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      httpOnly: true, 
     },
   } ;
 
