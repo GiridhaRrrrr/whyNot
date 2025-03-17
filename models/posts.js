@@ -38,4 +38,7 @@ const postSchema = new Schema({
 
 let Post = mongoose.model('Post', postSchema);
 
+// using .post method to delete all reviews when post is deleted
+
+
 module.exports = Post;
